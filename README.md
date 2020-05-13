@@ -14,8 +14,8 @@ Basic Usage:
 ```python
     >>> from nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
-    >>> nq = NodeQuery()
-    >>> accountStatus = nq.accountStatus(apikey)
+    >>> nq = NodeQuery(apikey)
+    >>> accountStatus = nq.accountStatus()
     >>> print(accountStatus)
     {'name': 'Jeff Rescignano', 'timezone': -4, 'server_limit': 10, 'api': {'requests': 6, 'rate_limit': 180}}
 ```
@@ -24,9 +24,9 @@ Advanced Error Handling (See Error Handling):
 ```python
     >>> from nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
-    >>> nq = NodeQuery()
+    >>> nq = NodeQuery(apikey)
     >>> try:
-    >>> 	accountStatus = nq.accountStatus(apikey)
+    >>> 	accountStatus = nq.accountStatus()
     >>> 	print(accountStatus)
     >>> except Exception as error:
     >>> 	print(error)
@@ -38,11 +38,11 @@ Advanced Error Handling (See Error Handling):
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
     >>> serverId = 'XXXXX'
     >>> loadType = 'hourly'
-    >>> nq = NodeQuery()
-    >>> nq.accountStatus(apikey)
-    >>> nq.listServers(apikey)
-    >>> nq.serverDetails(apikey, serverId)
-    >>> nq.loads(apikey, loadType, serverId)
+    >>> nq = NodeQuery(apikey)
+    >>> nq.accountStatus()
+    >>> nq.listServers()
+    >>> nq.serverDetails(serverId)
+    >>> nq.loads(loadType, serverId)
 ```
 Each of these endpoint responses are reflect and documented by [NodeQuery's API](https://nodequery.com/help/developer-api)
 
@@ -66,6 +66,8 @@ The following are the HTTP Code responses directly from [NodeQuery's API Documen
 - Added basic functionality of the NodeQuery API
 0.0.2
 - Updated the error handling method
+0.0.3
+- Added API Key to class init
 
 
 # About the API

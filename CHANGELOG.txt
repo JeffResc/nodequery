@@ -2,3 +2,5 @@
 - Initial commit and added basic functionality of the NodeQuery API
 === 0.0.2 ===
 - Updated the error handling method
+=== 0.0.3 ===
+- Added API Key to class init
