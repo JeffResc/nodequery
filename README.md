@@ -10,26 +10,26 @@ To get the latest stable release from [PyPi](https://pypi.org/project/nodequery/
 
 # Usage
 
-Basic Usage with Python:
+Basic Usage:
 ```python
     >>> from nodequery.nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
     >>> nq = NodeQuery()
     >>> accountStatus = nq.accountStatus(apikey)
-    >>> print(accountStatus.data)
+    >>> print(accountStatus)
     {'name': 'Jeff Rescignano', 'timezone': -4, 'server_limit': 10, 'api': {'requests': 6, 'rate_limit': 180}}
 ```
 
-Advanced Usage with Python:
+Advanced Error Handling (See Error Handling):
 ```python
     >>> from nodequery.nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
     >>> nq = NodeQuery()
-    >>> accountStatus = nq.accountStatus(apikey)
-    >>> if accountStatus.httpCode == 200:
-    >>> 	print(accountStatus.data)
-    >>> else:
-    >>> 	print('Error fetching account status: HTTP Code ' + str(accountStatus.httpCode))
+    >>> try:
+    >>> 	accountStatus = nq.accountStatus(apikey)
+    >>> 	print(accountStatus)
+    >>> except Exception as error:
+    >>> 	print(error)
 ```
 
 # Available Endpoints
@@ -46,8 +46,8 @@ Advanced Usage with Python:
 ```
 Each of these endpoint responses are reflect and documented by [NodeQuery's API](https://nodequery.com/help/developer-api)
 
-# NQResponse Class
-For each call, an NQResponse class if returned. This class is to help handle errors. nodequery has no built-in error handlers and instead gives you the data in order to make an informed decision when handling the error. The NQResponse class contains two members, `httpCode` and `data`. The `httpCode` always returns the HTTP code of the response from the NodeQuery API, unless we did not recieve a valid response. If no valid response was recieved, `httpCode` will be `0`. Each of the HTTP error codes that pertain to the [NodeQuery API](https://nodequery.com/help/developer-api) are documented in the HTTP Codes Section. As for the `data` member, this reflects the `data` member directly from the [NodeQuery API](https://nodequery.com/help/developer-api).
+# Error Handling
+When an exception is triggered, the variable returned is the HTTP error code that occured during the API call (see HTTP Codes). If no valid response was recieved, the error code will be `0`. Each of the HTTP error codes that pertain to the [NodeQuery API](https://nodequery.com/help/developer-api) are documented in the HTTP Codes Section.
 
 # HTTP Codes
 The following are the HTTP Code responses directly from [NodeQuery's API Documentation](https://nodequery.com/help/developer-api).
@@ -64,6 +64,8 @@ The following are the HTTP Code responses directly from [NodeQuery's API Documen
 0.0.1
 - Initial commit
 - Added basic functionality of the NodeQuery API
+0.0.2
+- Updated the error handling method
 
 
 # About the API

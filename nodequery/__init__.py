@@ -4,10 +4,6 @@ NodeQuery https://nodequery.com integration for your Python project.
 import json
 import urllib.request
 
-class NQResponse:
-    def __init__(self, httpCode=None, data=None):
-        self.httpCode, self.data = httpCode, data
-
 class NodeQuery:
     """This class is used to get information from NodeQuery."""
     BASE_URL = 'https://nodequery.com/api'
@@ -21,16 +17,16 @@ class NodeQuery:
         try:
             req = urllib.request.urlopen(fetchUrl)
         except urllib.error.URLError as e:
-            return NQResponse(httpCode=e.code, data=None)
+            raise Exception(e.code)
         else:
             if req:
                 jsonData = json.loads(req.read())
                 if jsonData['status'] == 'OK':
-                    return NQResponse(httpCode=req.getcode(), data=jsonData['data'])
+                    return jsonData['data']
                 else:
-                    return NQResponse(httpCode=0, data=None)
+                    raise Exception(0)
             else:
-                return NQResponse(httpCode=0, data=None)
+                raise Exception(0)
 
     def listServers(self, apikey):
         """List all servers for the current account. The returned data will be sorted ascending by name and includes basic server and resource usage data. New and unavailable servers will be marked as inactive."""
@@ -38,16 +34,16 @@ class NodeQuery:
         try:
             req = urllib.request.urlopen(fetchUrl)
         except urllib.error.URLError as e:
-            return NQResponse(httpCode=e.code, data=None)
+            raise Exception(e.code)
         else:
             if req:
                 jsonData = json.loads(req.read())
                 if jsonData['status'] == 'OK':
-                    return NQResponse(httpCode=req.getcode(), data=jsonData['data'])
+                    return jsonData['data']
                 else:
-                    return NQResponse(httpCode=0, data=None)
+                    raise Exception(0)
             else:
-                return NQResponse(httpCode=0, data=None)
+                raise Exception(0)
 
     def serverDetails(self, apikey, server):
         """As soon as you provide a valid id to the servers endpoint you will receive detailed information about the server in your account. A new or unavailable server will be marked as inactive."""
@@ -55,16 +51,16 @@ class NodeQuery:
         try:
             req = urllib.request.urlopen(fetchUrl)
         except urllib.error.URLError as e:
-            return NQResponse(httpCode=e.code, data=None)
+            raise Exception(e.code)
         else:
             if req:
                 jsonData = json.loads(req.read())
                 if jsonData['status'] == 'OK':
-                    return NQResponse(httpCode=req.getcode(), data=jsonData['data'])
+                    return jsonData['data']
                 else:
-                    return NQResponse(httpCode=0, data=None)
+                    raise Exception(0)
             else:
-                return NQResponse(httpCode=0, data=None)
+                raise Exception(0)
 
     def loads(self, apikey, loadtype, server):
         """The loads endpoint will always return all objects with information about each interval. If no data was found for an interval it will return 0 for every value. Possible selectors are currently hourly, daily and monthly. Starting August 1st, 2014 we will also offer a yearly load cache."""
@@ -72,13 +68,13 @@ class NodeQuery:
         try:
             req = urllib.request.urlopen(fetchUrl)
         except urllib.error.URLError as e:
-            return NQResponse(httpCode=e.code, data=None)
+            raise Exception(e.code)
         else:
             if req:
                 jsonData = json.loads(req.read())
                 if jsonData['status'] == 'OK':
-                    return NQResponse(httpCode=req.getcode(), data=jsonData['data'])
+                    return jsonData['data']
                 else:
-                    return NQResponse(httpCode=0, data=None)
+                    raise Exception(0)
             else:
-                return NQResponse(0, data=None)
+                raise Exception(0)

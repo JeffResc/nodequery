@@ -30,7 +30,7 @@ def read(fname):
 
 setup(
     name="nodequery",
-    version="0.0.1",
+    version="0.0.2",
     description="""NodeQuery https://nodequery.com integration for your Python project.""",
     long_description=read('README.rst'),
     classifiers=[
