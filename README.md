@@ -12,7 +12,7 @@ To get the latest stable release from [PyPi](https://pypi.org/project/nodequery/
 
 Basic Usage:
 ```python
-    >>> from nodequery.nodequery import NodeQuery
+    >>> from nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
     >>> nq = NodeQuery()
     >>> accountStatus = nq.accountStatus(apikey)
@@ -22,7 +22,7 @@ Basic Usage:
 
 Advanced Error Handling (See Error Handling):
 ```python
-    >>> from nodequery.nodequery import NodeQuery
+    >>> from nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
     >>> nq = NodeQuery()
     >>> try:
@@ -34,7 +34,7 @@ Advanced Error Handling (See Error Handling):
 
 # Available Endpoints
 ```python
-    >>> from nodequery.nodequery import NodeQuery
+    >>> from nodequery import NodeQuery
     >>> apikey = 'XXXXXXXXXXXXXXXXXXXXXXXX'
     >>> serverId = 'XXXXX'
     >>> loadType = 'hourly'
